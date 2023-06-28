@@ -1,4 +1,6 @@
-__pycache__/
+## PYTHON
+
+**__/pycache__/**
 *.py[cod]
 .pytest_cache/
 .cache/
@@ -7,3 +9,13 @@ __pycache__/
 .vscode/
 .vs/
 *.log
+
+## PYTEST
+
+## VENV
+
+.venv
+venv
+
+
+## IDE

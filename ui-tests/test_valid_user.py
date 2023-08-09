@@ -8,6 +8,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from pages.locators import MainPageLocators, MainPageLoginLocators
 import logging
 from webdriver_manager.core.logger import set_logger
+import os
+from dotenv import load_dotenv
+
+
 
 
 '''
@@ -16,7 +20,7 @@ tests for a valid user
 @pytest.mark.usefixtures("return_headless_firefox_driver", "caplog")
 class TestValidUserFlows:
 
-
+    load_dotenv()
     logging.basicConfig(level=logging.DEBUG)
     testLogger = logging.getLogger()
     testLogger.setLevel(logging.INFO)
@@ -35,12 +39,15 @@ class TestValidUserFlows:
 
 
     def test_can_login(self):
+        VALID_USER = os.getenv('valid_username')
+        VALID_PW = os.getenv('valid_password')
         login_page = page.MainPageLogin(self.driver)
         self.driver.get(login_page.page_url)
         assert login_page.is_title_matches("Log In") is True, "expected page title to contain 'Log In' and it did not."
        
+
         login_page.validate_page_load()
-        login_page.fill_login_form('kate', 'gV7hDHXQmonUgdF')
+        login_page.fill_login_form(VALID_USER, VALID_PW)
 
         username_input = self.driver.find_element(MainPageLoginLocators.LOGIN_USERNAME_INPUT[0], MainPageLoginLocators.LOGIN_USERNAME_INPUT[1])
         logging.getLogger().info("username input text: {!r}".format(username_input.get_property('value')))

@@ -10,8 +10,6 @@ import logging
 import os
 
 
-
-
 @pytest.fixture(scope='session')
 def path_to_chrome():
     return ChromeDriverManager().install()
@@ -27,7 +25,7 @@ def return_headless_firefox_driver(path_to_firefox, base_url, request):
     webdriver_service.start()
 
     options = webdriver.FirefoxOptions()
-    options.headless = True
+    options.add_argument('-headless')
 
     driver = webdriver.Remote(webdriver_service.service_url, options=options)
 

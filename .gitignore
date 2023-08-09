@@ -10,6 +10,9 @@
 .vs/
 *.log
 
+## .env
+**/.env
+
 ## PYTEST
 
 ## VENV
